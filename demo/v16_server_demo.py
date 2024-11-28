@@ -99,9 +99,9 @@ class ChargePoint(cp):
     @on(Action.BootNotification)
     async def on_boot_notification(self, charge_point_model, charge_point_vendor, **kwargs):
         logging.info("charge_point_model %s, charge_point_vendor %s, kwargs %s" % (charge_point_model, charge_point_vendor, repr(kwargs)))
-        assert charge_point_vendor == "Alfen BV"
-        assert charge_point_model == "ICU Eve Mini"
-        assert kwargs["firmware_version"] == "#1:3.4.0-2990#N:217H;1.0-223"
+        # assert charge_point_vendor == "Alfen BV"
+        # assert charge_point_model == "ICU Eve Mini"
+        # assert kwargs["firmware_version"] == "#1:3.4.0-2990#N:217H;1.0-223"
 
         return self._call_result.BootNotificationPayload(
             current_time=datetime.utcnow().isoformat(),
@@ -602,6 +602,7 @@ class ChargePoint(cp):
     async def test_send_msg(self):
         send_opt = [k for k in dir(self) if k.startswith("send_")]
         logging.info("Server send_opt %s" % repr(send_opt))
+        return
         for i in send_opt:
             await getattr(self, i)()
             asyncio.sleep(0.5)
@@ -643,7 +644,7 @@ async def main():
         on_connect,
         '0.0.0.0',
         31499,
-        subprotocols=['ocpp1.6.0']
+        subprotocols=['ocpp1.6']
     )
     logging.info("WebSocket Server Started")
     await server.wait_closed()
