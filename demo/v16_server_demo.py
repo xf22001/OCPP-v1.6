@@ -81,7 +81,11 @@ from ocpp.v16.datatypes import (
 )
 
 
-logging.basicConfig(level=logging.INFO, filename="debug.log", filemode="a")
+logging.basicConfig(level=logging.INFO,
+        handlers=[
+        logging.FileHandler('debug.log'),  # 将日志输出到 debug.log 文件
+        logging.StreamHandler()              # 同时输出到控制台
+    ])
 
 
 class ChargePoint(cp):
