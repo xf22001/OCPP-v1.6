@@ -80,7 +80,8 @@ from ocpp.v16.datatypes import (
     Firmware,
 )
 
-logging.basicConfig(level=logging.INFO)
+
+logging.basicConfig(level=logging.INFO, filename="debug.log", filemode="a")
 
 
 class ChargePoint(cp):
