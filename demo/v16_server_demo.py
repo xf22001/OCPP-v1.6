@@ -82,6 +82,7 @@ from ocpp.v16.datatypes import (
 
 
 logging.basicConfig(level=logging.INFO,
+        format='%(asctime)s - %(levelname)s - %(message)s',  # 设置日志格式
         handlers=[
         logging.FileHandler('debug.log'),  # 将日志输出到 debug.log 文件
         logging.StreamHandler()              # 同时输出到控制台
